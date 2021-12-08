@@ -1,3 +1,14 @@
+const languages = [
+  {
+    code: 'US',
+    symbol: '🇺🇸',
+  },
+  {
+    code: 'ESP',
+    symbol: '🇪🇸'
+  },
+]
+
 const languageTranslations = {
   en: {
     welcome: 'Welcome to PokeDex version 2.0',
@@ -18,4 +29,4 @@ const getStringByLanguage = (code, string, strings=languageTranslations) => {
   return strings[code][string]
 };
 
-export default { getStringByLanguage, }
+export default { getStringByLanguage, languages }
