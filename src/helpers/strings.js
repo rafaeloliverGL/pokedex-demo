@@ -1,10 +1,10 @@
 const languages = [
   {
-    code: 'US',
+    code: 'en',
     symbol: '🇺🇸',
   },
   {
-    code: 'ESP',
+    code: 'esp',
     symbol: '🇪🇸'
   },
 ]

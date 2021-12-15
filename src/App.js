@@ -1,19 +1,36 @@
+import React, { useReducer } from 'react'
 import { PokeProvider } from './context/pokecontext';
-import SearchBar from './components/SearchBar'
-import PokemonCard from './components/PokemonCard';
+import { LanguageProvider } from './context/languageContext';
+import HomePage from './components/Home'
+import LanguagePicker from './components/LanguagePicker/LanguagePicker';
+
+function reducer(state, action) {
+  switch(action.type) {
+    case "setLanguage":
+      return { ...state, language: action.payload };
+    default:
+      throw new Error(`Invalid action type: ${action.type}`);
+  }
+}
 
 function App() {
+  const [state, dispatch] = useReducer(
+    reducer,
+    { language: 'en' }
+  )
+
+  const setLanguage = (language) =>
+    dispatch({ type: "setLanguage", payload: language });
+
   return (
-    <PokeProvider>
-      <div className="ui container center aligned">
-        <div className="ui segment ">Welcome to the PokeDex 2.0
-          <div className="ui divider"></div>
-          <SearchBar />
-          <div className="ui divider"></div>
-          <PokemonCard />
+    <LanguageProvider value={state.language}>
+      <PokeProvider>
+        <div className="ui container center aligned">
+          <LanguagePicker setLanguage={setLanguage} />
+          <HomePage />
         </div>
-      </div>
-    </PokeProvider>
+      </PokeProvider>
+    </LanguageProvider>
   );
 }
 
